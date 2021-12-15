@@ -36,7 +36,7 @@
         var w = document.querySelector("html").clientWidth;
 
         function fnn() {
-            a.addEventListener("mousedown", function(e) {
+            a.addEventListener("mousedown" || "touchstart", function(e) {
                 var x = e.pageX - a.offsetLeft;
                 var y = e.pageY - a.offsetTop;
                 // var imageMax = 10;
@@ -44,7 +44,7 @@
                 // var imageNumber = parseInt(Math.random() * (imageMax - imageMin + 1) + imageMin);
                 a.style.backgroundImage = "url(image/9.jpg)";
                 a.style.backgroundSize = w + "px ";
-                document.addEventListener("mousemove", move)
+                document.addEventListener("mousemove" || " touchmove", move)
 
                 function move(e) {
                     a.style.left = e.pageX - x + "px";
@@ -54,7 +54,7 @@
                     a.style.backgroundPositionY = -(e.pageY - y) + "px";
                     console.log();
                 }
-                document.addEventListener("mouseup", function(e) {
+                document.addEventListener("mouseup" || " touchend", function(e) {
                     a.style.backgroundImage = "none";
                     document.removeEventListener("mousemove", move);
                 })
