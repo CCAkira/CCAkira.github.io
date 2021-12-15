@@ -22,7 +22,6 @@
         @media (max-width:600px) {
             div {
                 position: absolute;
-                display: none;
                 width: 15vw;
                 height: 15vw;
                 border: 2px solid;
@@ -69,7 +68,6 @@
                     //背景图片位置
                     a.style.backgroundPositionX = -(e.pageX - a.offsetWidth / 2) + "px";
                     a.style.backgroundPositionY = -(e.pageY - a.offsetHeight / 2) + "px";
-                    console.log(a.style.backgroundSize);
                     document.addEventListener("mousemove", move)
 
                     function move(e) {
