@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            background-repeat: no-repeat;
+        }
+        
+        div {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 2px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // window.addEventListener("load", function(){
+        //     function fn(){
+        //         a.addEventListener("mousedown",function(e){
+        //             var x = e.page
+        //         })
+        //     }
+        // })
+    </script>
+    <div></div>
+    <script>
+        var a = document.querySelector("div");
+        var w = document.querySelector("html").clientWidth;
+
+        function fnn() {
+            a.addEventListener("mousedown", function(e) {
+                var x = e.pageX - a.offsetLeft;
+                var y = e.pageY - a.offsetTop;
+                // var imageMax = 10;
+                // var imageMin = 1;
+                // var imageNumber = parseInt(Math.random() * (imageMax - imageMin + 1) + imageMin);
+                a.style.backgroundImage = "url(image/9.jpg)";
+                a.style.backgroundSize = w + "px ";
+                document.addEventListener("mousemove", move)
+
+                function move(e) {
+                    a.style.left = e.pageX - x + "px";
+                    a.style.top = e.pageY - y + "px";
+
+                    a.style.backgroundPositionX = -(e.pageX - x) + "px";
+                    a.style.backgroundPositionY = -(e.pageY - y) + "px";
+                    console.log();
+                }
+                document.addEventListener("mouseup", function(e) {
+                    a.style.backgroundImage = "none";
+                    document.removeEventListener("mousemove", move);
+                })
+            })
+        }
+        fnn();
+    </script>
+</body>
+
+</html>

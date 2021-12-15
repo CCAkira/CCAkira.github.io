@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            display: inline-block;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        window.addEventListener("load",function(){
+            var h = document.querySelector(".h");
+            var m = document.querySelector(".m");
+            var s = document.querySelector(".s");
+            var time = +new Date("2021-12-12 0:0:0");
+
+            t();
+            setInterval(t, 100);
+            function t(){
+                var nowtime = +new Date();
+                var times = (time - nowtime) / 1000;
+                h.innerHTML = parseInt(times/60/60%24);
+                m.innerHTML = parseInt(times/60%60);
+                s.innerHTML = parseInt(times%60);
+            }
+        })
+    </script>
+    <div class="h"></div>
+    <div class="m"></div>
+    <div class="s"></div>
+</body>
+</html>

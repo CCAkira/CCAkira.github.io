@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .search{
+            position: absolute;
+            top: 300px;
+            left: 600px;
+        }
+        .con{
+            border: 1px solid #000;
+            width: 100px;
+        }
+        .con::after{
+            content: "";
+            width: 0;height: 0;
+            top: 28px;
+            left: 10px;
+            position: absolute;
+            border: 8px solid #000;
+            border-style: solid dashed dashed;
+            border-color: #fff transparent transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="search">
+        <div class="con">请输入</div>
+        <input type="text" placeholder="">
+    </div>
+    <script>
+        var s =document.querySelector(".search");
+        var i = document.querySelector("input");
+        var c = document.querySelector(".con");
+        i.addEventListener("focus",function(e){
+            if(c.innerHTML == "请输入"){
+            s.style.top = "0px";
+            s.style.left = "0px";
+            c.innerHTML = "你点nm";
+            i.blur();
+            }
+            else{
+            s.style.top = "300px";
+            s.style.left = "600px";
+            c.innerHTML = "请输入";
+            i.blur();
+            }
+            console.log(c.innerHTML);
+        })
+        
+    </script>
+</body>
+</html>
