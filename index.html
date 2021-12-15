@@ -19,11 +19,12 @@
             border: 2px solid;
         }
         
-        @media (max-width:600px) {
+        @media (max-width:1000px) {
             div {
                 position: absolute;
-                width: 15vw;
-                height: 15vw;
+                display: flex;
+                width: 20vw;
+                height: 20vw;
                 border: 2px solid;
             }
         }
@@ -31,15 +32,6 @@
 </head>
 
 <body>
-    <script>
-        // window.addEventListener("load", function(){
-        //     function fn(){
-        //         a.addEventListener("mousedown",function(e){
-        //             var x = e.page
-        //         })
-        //     }
-        // })
-    </script>
     <div></div>
     <script>
         var a = document.querySelector("div");
@@ -90,24 +82,25 @@
         }
 
         function fn() {
-            document.querySelector("html").addEventListener("touchstart", function(e) {
+            a.addEventListener("touchstart", function(e) {
+                var x = e.touches[0].pageX - a.offsetLeft;
+                var y = e.touches[0].pageY - a.offsetTop;
                 // var imageMax = 10;
                 // var imageMin = 1;
                 // var imageNumber = parseInt(Math.random() * (imageMax - imageMin + 1) + imageMin);
                 a.style.backgroundImage = "url(image/9.jpg)";
                 a.style.backgroundSize = w + "px ";
-                a.style.left = e.touches[0].pageX - a.offsetWidth / 2 + "px";
-                a.style.top = e.touches[0].pageY - a.offsetHeight / 2 + "px";
+                a.style.left = e.touches[0].pageX - x + "px";
+                a.style.top = e.touches[0].pageY - y + "px";
 
                 document.addEventListener("touchmove", move)
 
                 function move(e) {
-                    a.style.left = e.touches[0].pageX - a.offsetWidth / 2 + "px";
-                    a.style.top = e.touches[0].pageY - a.offsetHeight / 2 + "px";
+                    a.style.left = e.touches[0].pageX - x + "px";
+                    a.style.top = e.touches[0].pageY - y + "px";
 
-                    a.style.backgroundPositionX = -(e.touches[0].pageX - a.offsetWidth) + "px";
-                    a.style.backgroundPositionY = -(e.touches[0].pageY - a.offsetHeight / 2) + "px";
-                    console.log();
+                    a.style.backgroundPositionX = -(e.touches[0].pageX - x) + "px";
+                    a.style.backgroundPositionY = -(e.touches[0].pageY - y) + "px";
                 }
                 document.addEventListener("touchend", function(e) {
                     a.style.backgroundImage = "none";
