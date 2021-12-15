@@ -81,7 +81,7 @@
                     a.style.backgroundPositionY = -(e.touches[0].pageY - y) + "px";
                     console.log(e.touches[0].pageX);
                 }
-                document.addEventListener(" touchend", function(evt) {
+                document.addEventListener("touchend", function(e) {
                     a.style.backgroundImage = "none";
                     document.removeEventListener("mousemove", move);
                 })
