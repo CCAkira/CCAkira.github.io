@@ -13,8 +13,9 @@
         
         div {
             position: absolute;
-            width: 200px;
-            height: 200px;
+            display: none;
+            width: 15vw;
+            height: 15vw;
             border: 2px solid;
         }
     </style>
@@ -34,52 +35,75 @@
     <script>
         var a = document.querySelector("div");
         var w = document.querySelector("html").clientWidth;
+        //清楚右键菜单
+        document.oncontextmenu = function(e) {
+            e.preventDefault();
+        }
 
         function fnn() {
-            a.addEventListener("mousedown" || "touchstart", function(e) {
-                var x = e.pageX - a.offsetLeft;
-                var y = e.pageY - a.offsetTop;
-                // var imageMax = 10;
-                // var imageMin = 1;
-                // var imageNumber = parseInt(Math.random() * (imageMax - imageMin + 1) + imageMin);
-                a.style.backgroundImage = "url(image/9.jpg)";
-                a.style.backgroundSize = w + "px ";
-                document.addEventListener("mousemove" || " touchmove", move)
 
-                function move(e) {
-                    a.style.left = e.pageX - x + "px";
-                    a.style.top = e.pageY - y + "px";
+            document.querySelector("html").addEventListener("mousedown", function(e) {
+                //如果是右键点击
+                if (e.button == 2) {
+                    a.style.display = "block";
+                    //获得鼠标位置
+                    var x = e.pageX - a.offsetLeft;
+                    var y = e.pageY - a.offsetTop;
 
-                    a.style.backgroundPositionX = -(e.pageX - x) + "px";
-                    a.style.backgroundPositionY = -(e.pageY - y) + "px";
-                    console.log();
+                    // var imageMax = 10;
+                    // var imageMin = 1;
+                    // var imageNumber = parseInt(Math.random() * (imageMax - imageMin + 1) + imageMin);
+                    a.style.backgroundImage = "url(image/9.jpg)";
+                    a.style.backgroundSize = w + "px ";
+                    //边框位置
+                    a.style.left = e.pageX - a.offsetWidth / 2 + "px";
+                    a.style.top = e.pageY - a.offsetHeight / 2 + "px";
+                    document.addEventListener("mousemove", move)
+
+                    function move(e) {
+
+                        //边框移动
+                        a.style.left = e.pageX - a.offsetWidth / 2 + "px";
+                        a.style.top = e.pageY - a.offsetHeight / 2 + "px";
+                        //背景图片位置
+                        a.style.backgroundPositionX = -(e.pageX - x) + "px";
+                        a.style.backgroundPositionY = -(e.pageY - y) + "px";
+                        console.log();
+                    }
+                    document.addEventListener("mouseup", function(e) {
+                        a.style.backgroundImage = "none";
+                        a.style.display = "none";
+                        // a.style.left = 0 + "px";
+                        // a.style.top = 0 + "px";
+                        document.removeEventListener("mousemove", move);
+                    })
                 }
-                document.addEventListener("mouseup" || " touchend", function(e) {
-                    a.style.backgroundImage = "none";
-                    document.removeEventListener("mousemove", move);
-                })
             })
         }
 
         function fn() {
-            a.addEventListener("touchstart", function(e) {
-                e.preventDefault();
+            document.querySelector("html").addEventListener("touchstart", function(e) {
+                a.style.display = "block";
                 var x = e.touches[0].pageX - a.offsetLeft;
                 var y = e.touches[0].pageY - a.offsetTop;
+
                 // var imageMax = 10;
                 // var imageMin = 1;
                 // var imageNumber = parseInt(Math.random() * (imageMax - imageMin + 1) + imageMin);
                 a.style.backgroundImage = "url(image/9.jpg)";
                 a.style.backgroundSize = w + "px ";
+                a.style.left = e.touches[0].pageX - a.offsetWidth / 2 + "px";
+                a.style.top = e.touches[0].pageY - a.offsetHeight / 2 + "px";
+
                 document.addEventListener("touchmove", move)
 
                 function move(e) {
-                    a.style.left = e.touches[0].pageX - x + "px";
-                    a.style.top = e.touches[0].pageY - y + "px";
+                    a.style.left = e.touches[0].pageX - a.offsetWidth / 2 + "px";
+                    a.style.top = e.touches[0].pageY - a.offsetHeight / 2 + "px";
 
                     a.style.backgroundPositionX = -(e.touches[0].pageX - x) + "px";
                     a.style.backgroundPositionY = -(e.touches[0].pageY - y) + "px";
-                    console.log(e.touches[0].pageX);
+                    console.log();
                 }
                 document.addEventListener("touchend", function(e) {
                     a.style.backgroundImage = "none";
