@@ -62,9 +62,10 @@
         }
 
         function fn() {
-            a.addEventListener("touchstart", function(evt) {
-                var x = evt.touches[0].pageX - a.offsetLeft;
-                var y = evt.touches[0].pageY - a.offsetTop;
+            a.addEventListener("touchstart", function(e) {
+                e.preventDefault();
+                var x = e.touches[0].pageX - a.offsetLeft;
+                var y = e.touches[0].pageY - a.offsetTop;
                 // var imageMax = 10;
                 // var imageMin = 1;
                 // var imageNumber = parseInt(Math.random() * (imageMax - imageMin + 1) + imageMin);
@@ -72,13 +73,13 @@
                 a.style.backgroundSize = w + "px ";
                 document.addEventListener("touchmove", move)
 
-                function move(evt) {
-                    a.style.left = evt.touches[0].pageX - x + "px";
-                    a.style.top = evt.touches[0].pageY - y + "px";
+                function move(e) {
+                    a.style.left = e.touches[0].pageX - x + "px";
+                    a.style.top = e.touches[0].pageY - y + "px";
 
-                    a.style.backgroundPositionX = -(evt.touches[0].pageX - x) + "px";
-                    a.style.backgroundPositionY = -(evt.touches[0].pageY - y) + "px";
-                    console.log(evt.touches[0].pageX);
+                    a.style.backgroundPositionX = -(e.touches[0].pageX - x) + "px";
+                    a.style.backgroundPositionY = -(e.touches[0].pageY - y) + "px";
+                    console.log(e.touches[0].pageX);
                 }
                 document.addEventListener(" touchend", function(evt) {
                     a.style.backgroundImage = "none";
