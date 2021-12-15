@@ -18,6 +18,12 @@
             height: 15vw;
             border: 2px solid;
         }
+        
+        @media (max-width:600px) {
+            div {
+                display: block;
+            }
+        }
     </style>
 </head>
 
@@ -83,7 +89,6 @@
 
         function fn() {
             document.querySelector("html").addEventListener("touchstart", function(e) {
-                a.style.display = "block";
                 // var imageMax = 10;
                 // var imageMin = 1;
                 // var imageNumber = parseInt(Math.random() * (imageMax - imageMin + 1) + imageMin);
@@ -104,7 +109,6 @@
                 }
                 document.addEventListener("touchend", function(e) {
                     a.style.backgroundImage = "none";
-                    a.style.display = "none";
                     document.removeEventListener("mousemove", move);
                 })
             }, {
